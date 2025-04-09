@@ -12,7 +12,7 @@ pipeline {
                     sh 'git fetch origin main'
                     // Get changed files (compared to main) 
                     def diffFiles = sh(
-                        script: "git diff --name-only origin/main",
+                        script: "git diff --name-only FETCH_HEAD",
                         returnStdout: true
                     ).trim().split("\n")
 
