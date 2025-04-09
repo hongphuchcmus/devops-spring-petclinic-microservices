@@ -42,9 +42,8 @@ pipeline {
                 expression { return env.CHANGED_SERVICE }
             }
             steps {
-                dir("${env.CHANGED_SERVICE}") {
-                    sh './mvnw test'
-                }
+                // Test on changed service 
+                sh "./mvnw -pl ${env.CHANGED_SERVICE} test"
             }
             post {
                 always {
@@ -59,9 +58,7 @@ pipeline {
                 expression { return env.CHANGED_SERVICE }
             }
             steps {
-                dir("${env.CHANGED_SERVICE}") {
-                    sh './mvnw clean package -DskipTests'
-                }
+                sh "./mvnw pl ${env.CHANGED_SERVICE} clean package -DskipTests"
             }
         }
     }
