@@ -9,6 +9,7 @@ pipeline {
         stage('Detect Changed Service') {
             steps {
                 script {
+                    sh 'git fetch origin main'
                     // Get changed files (compared to main) 
                     def diffFiles = sh(
                         script: "git diff --name-only origin/main",
