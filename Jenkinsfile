@@ -17,7 +17,7 @@ pipeline {
                     ).trim().split("\n")
 
                     // Define microservice folders
-                    def services = ['spring-petclinic-customers-service', 'spring-petclinic-vets-service', 'spring-petclinic-visits-service', 'spring-petclinic-genai-service', 'spring-petclinic-config-service']
+                    def services = ['spring-petclinic-vets-service','spring-petclinic-customers-service','spring-petclinic-visits-service','spring-petclinic-admin-server','spring-petclinic-api-gateway','spring-petclinic-config-server','spring-petclinic-genai-service','spring-petclinic-discovery-server']
                 
                     // Set the changedService if any match
                     env.CHANGED_SERVICE = ''
