@@ -58,7 +58,7 @@ pipeline {
                 expression { return env.CHANGED_SERVICE }
             }
             steps {
-                sh "./mvnw pl ${env.CHANGED_SERVICE} clean package -DskipTests"
+                sh "./mvnw -pl ${env.CHANGED_SERVICE} clean package -DskipTests"
             }
         }
     }
