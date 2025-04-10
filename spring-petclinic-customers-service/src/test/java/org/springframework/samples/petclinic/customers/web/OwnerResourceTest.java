@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.samples.petclinic.customers.model.Owner;
 import org.springframework.samples.petclinic.customers.model.OwnerRepository;
 import org.springframework.samples.petclinic.customers.model.Pet;
+import org.springframework.samples.petclinic.customers.web.mapper.OwnerEntityMapper;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -35,6 +36,9 @@ class OwnerResourceTest {
 
   @MockBean
   OwnerRepository ownerRepository;
+
+  @MockBean
+  OwnerEntityMapper ownerEntityMapper;
 
   private void setUp() {
       owner = new Owner();
