@@ -2,6 +2,9 @@ package org.springframework.samples.petclinic.customers.web;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +51,6 @@ class PetResourceTest {
 
         given(petRepository.findById(2)).willReturn(Optional.of(pet));
 
-
         mvc.perform(get("/owners/2/pets/2").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json"))
@@ -73,5 +75,27 @@ class PetResourceTest {
 
         owner.addPet(pet);
         return pet;
+    }
+
+    @Test
+    void shouldReturnNotFoundForNonExistingPet() throws Exception {
+        given(petRepository.findById(99)).willReturn(Optional.empty());
+
+        mvc.perform(get("/owners/2/pets/99").accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void shouldCheckPetEquality() {
+        Pet pet1 = setupPet();
+        Pet pet2 = setupPet();
+
+        // Assert that two pets with the same properties are equal
+        assertEquals(pet1, pet2);
+        assertEquals(pet1, pet2);
+
+        // Modify one property and assert they are no longer equal
+        pet2.setName("DifferentName");
+        assertNotEquals(pet1, pet2);
     }
 }
