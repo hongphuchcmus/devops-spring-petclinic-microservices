@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.samples.petclinic.customers.model.Owner;
 import org.springframework.samples.petclinic.customers.model.OwnerRepository;
+import org.springframework.samples.petclinic.customers.web.mapper.OwnerEntityMapper;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.Arrays;
@@ -123,4 +124,6 @@ class OwnerResourceTest {
         .content("{\"firstName\":\"John\",\"lastName\":\"Updated\",\"address\":\"123 Main St\",\"city\":\"Springfield\",\"telephone\":\"1234567890\"}"))
       .andExpect(status().isNotFound());
   }
+
+  
 }
