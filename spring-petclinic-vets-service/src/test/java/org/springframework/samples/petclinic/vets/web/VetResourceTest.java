@@ -26,12 +26,15 @@ import org.springframework.samples.petclinic.vets.model.VetRepository;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.samples.petclinic.vets.model.Specialty;
 
 import static java.util.Arrays.asList;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Optional;
 
 /**
  * @author Maciej Szarlinski
@@ -58,5 +61,22 @@ class VetResourceTest {
         mvc.perform(get("/vets").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$[0].id").value(1));
+    }
+
+    @Test
+    void shouldManageVetPOJO() {
+        Vet vet = new Vet();
+        vet.setFirstName("John");
+        vet.setLastName("Doe");
+        
+        Specialty specialty = new Specialty();
+        specialty.setId(1);
+        specialty.setName("surgery");
+        vet.addSpecialty(specialty);
+
+        assert(vet.getFirstName().equals("John"));
+        assert(vet.getLastName().equals("Doe"));
+        assert(vet.getSpecialties().size() == 1);
+        assert(vet.getSpecialties().get(0).getName().equals("surgery"));
     }
 }

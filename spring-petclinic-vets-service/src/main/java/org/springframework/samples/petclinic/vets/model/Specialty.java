@@ -34,6 +34,10 @@ public class Specialty {
     @Column(name = "name")
     private String name;
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return this.id;
     }
