@@ -1,3 +1,5 @@
+package org.springframework.samples.petclinic.customers.web;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -15,8 +17,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-package org.springframework.samples.petclinic.customers.web;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(OwnerResource.class)
