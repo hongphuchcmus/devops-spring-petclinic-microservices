@@ -6,36 +6,38 @@ pipeline {
     }
 
     stages {
-        // stage('Detect Changed Service') {
-        //     steps {
-        //         script {
-        //             sh 'git fetch origin main'
-        //             // Get changed files (compared to main) 
-        //             def diffFiles = sh(
-        //                 script: "git diff --name-only FETCH_HEAD",
-        //                 returnStdout: true
-        //             ).trim().split("\n")
+        stage('Detect Changed Service') {
+            steps {
+                script {
+                    // sh 'git fetch origin main'
+                    // // Get changed files (compared to main) 
+                    // def diffFiles = sh(
+                    //     script: "git diff --name-only FETCH_HEAD",
+                    //     returnStdout: true
+                    // ).trim().split("\n")
 
-        //             // Define microservice folders
-        //             def services = ['spring-petclinic-vets-service','spring-petclinic-customers-service','spring-petclinic-visits-service','spring-petclinic-admin-server','spring-petclinic-api-gateway','spring-petclinic-config-server','spring-petclinic-genai-service','spring-petclinic-discovery-server']
+                    // // Define microservice folders
+                    // def services = ['spring-petclinic-vets-service','spring-petclinic-customers-service','spring-petclinic-visits-service','spring-petclinic-admin-server','spring-petclinic-api-gateway','spring-petclinic-config-server','spring-petclinic-genai-service','spring-petclinic-discovery-server']
                 
-        //             // Set the changedService if any match
-        //             env.CHANGED_SERVICE = ''
-        //             for (svc in services) {
-        //                 if (diffFiles.any { it.startsWith(svc + "/") }) {
-        //                     env.CHANGED_SERVICE = svc
-        //                     break
-        //                 }
-        //             }
+                    // // Set the changedService if any match
+                    // env.CHANGED_SERVICE = ''
+                    // for (svc in services) {
+                    //     if (diffFiles.any { it.startsWith(svc + "/") }) {
+                    //         env.CHANGED_SERVICE = svc
+                    //         break
+                    //     }
+                    // }
 
-        //             if (env.CHANGED_SERVICE == '') {
-        //                 error "No service changed. Skipping pipeline."
-        //             } else {
-        //                 echo "Detected change in: ${env.CHANGED_SERVICE}"
-        //             }
-        //         }
-        //     }
-        // }
+                    // if (env.CHANGED_SERVICE == '') {
+                    //     error "No service changed. Skipping pipeline."
+                    // } else {
+                    //     echo "Detected change in: ${env.CHANGED_SERVICE}"
+                    // }
+
+                    env.CHANGED_SERVICE = 'spring-petclinic-customers-service'
+                }
+            }
+        }
 
         stage('Test') {
             when {
