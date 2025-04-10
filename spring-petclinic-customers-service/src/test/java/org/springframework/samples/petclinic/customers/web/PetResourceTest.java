@@ -78,7 +78,7 @@ class PetResourceTest {
         PetType petType = new PetType();
         petType.setId(6);
         pet.setType(petType);
-        pet.setBirthDate(new Date());
+        //pet.setBirthDate(new Date());
 
         owner.addPet(pet);
         return pet;

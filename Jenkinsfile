@@ -71,6 +71,7 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: "${env.CHANGED_SERVICE}/target/*.jar", allowEmptyArchive: true
+            archiveArtifacts artifacts: "${env.CHANGED_SERVICE}/target/site/jacoco/**/*", allowEmptyArchive: true
         }
     }
 }
