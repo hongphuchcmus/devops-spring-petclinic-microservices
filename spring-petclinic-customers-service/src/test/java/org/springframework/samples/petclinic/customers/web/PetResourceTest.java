@@ -28,7 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Maciej Szarlinski
  */
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(PetResource.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 @ActiveProfiles("test")
 class PetResourceTest {
 
