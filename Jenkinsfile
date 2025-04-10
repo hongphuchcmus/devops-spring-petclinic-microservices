@@ -45,7 +45,7 @@ pipeline {
             }
             steps {
                 // Test on changed service 
-                sh "./mvnw -pl ${env.CHANGED_SERVICE} -am clean test jacoco:report"
+                sh "./mvnw -pl ${env.CHANGED_SERVICE} -am clean test jacoco:report -Djacoco.skip=false"
             }
             post {
                 always {
