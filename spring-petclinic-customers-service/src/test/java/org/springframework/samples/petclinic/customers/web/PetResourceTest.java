@@ -30,8 +30,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
  * @author Maciej Szarlinski
  */
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(OwnerResource.class)
 @ActiveProfiles("test")
 class PetResourceTest {
 
@@ -43,6 +42,7 @@ class PetResourceTest {
 
     @MockBean
     OwnerRepository ownerRepository;
+
 
     @Test
     void shouldGetAPetInJSonFormat() throws Exception {
@@ -73,8 +73,30 @@ class PetResourceTest {
         PetType petType = new PetType();
         petType.setId(6);
         pet.setType(petType);
+        pet.setBirthDate(new Date());
 
         owner.addPet(pet);
         return pet;
+    }
+
+    @Test
+    void shouldCheckIfTwoPetsAreEqual() {
+        Pet pet1 = setupPet();
+        Pet pet2 = setupPet();
+
+        // Assert that the two pets are equal
+        assertThat(pet1).isEqualTo(pet2);
+
+        // Modify one property and assert they are no longer equal
+        pet2.setName("Charlie");
+        assertThat(pet1).isNotEqualTo(pet2);
+    }
+    
+    @Test
+    void shouldReturnCorrectToString() {
+        Pet pet = setupPet();
+        String expectedToString = "Pet[id=2, name=Basil, birthDate=" + pet.getBirthDate() +
+                                  ", type=6, ownerFirstname=George, ownerLastname=Bush]";
+        assertThat(pet.toString()).isEqualTo(expectedToString);
     }
 }

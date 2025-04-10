@@ -50,7 +50,10 @@ pipeline {
             post {
                 always {
                     junit "${env.CHANGED_SERVICE}/target/surefire-reports/*.xml"
-                    jacoco execPattern:"${env.CHANGED_SERVICE}/target/jacoco.exec"
+                    jacoco execPattern:"${env.CHANGED_SERVICE}/target/jacoco.exec",
+                    classPattern: "${env.CHANGED_SERVICE}/target/classes",
+                    sourcePattern: "${env.CHANGED_SERVICE}/src/main/java",
+                    minimumInstructionCoverage: '0'
                 }
             }
         }
