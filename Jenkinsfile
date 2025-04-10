@@ -34,7 +34,7 @@ pipeline {
                     //     echo "Detected change in: ${env.CHANGED_SERVICE}"
                     // }
 
-                    env.CHANGED_SERVICE = 'spring-petclinic-vets-service'
+                    env.CHANGED_SERVICE = 'spring-petclinic-visits-service'
                 }
             }
         }
